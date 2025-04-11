@@ -7,7 +7,7 @@ paper-configlib = "4.5.0"
 paper-desertwell = "2.0.5"
 
 # Common
-common-redisson = "3.45.0"
+common-redisson = "3.45.1"
 common-adventure-api = "4.18.0"
 common-reflections = "0.10.2"
 
