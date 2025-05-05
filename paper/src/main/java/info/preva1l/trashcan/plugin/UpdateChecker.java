@@ -3,6 +3,7 @@ package info.preva1l.trashcan.plugin;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import info.preva1l.trashcan.Version;
 import org.jetbrains.annotations.NotNull;
 
@@ -120,8 +121,7 @@ public class UpdateChecker {
         MODRINTH((resource -> {
             final String url = formatId("https://api.modrinth.com/v2/project/{id}/version", resource);
             try (final InputStreamReader reader = new InputStreamReader(new URL(url).openConnection().getInputStream())) {
-                final JsonArray array = new JsonArray();
-                array.add(new BufferedReader(reader).readLine());
+                final JsonArray array = JsonParser.parseReader(reader).getAsJsonArray();
                 for (int i = 0; i < array.size(); i++) {
                     final JsonObject object = array.get(i).getAsJsonObject();
                     if (object.get("version_type").getAsString().equals("release")) {
