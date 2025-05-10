@@ -35,7 +35,7 @@ dependencies {
     testImplementation(libs.bundles.paper.included)
     testImplementation("com.github.seeseemelk:MockBukkit-v1.20:3.93.2")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.4")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:5.11.4")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.12.2")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.11.4")
 }
 
