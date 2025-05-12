@@ -12,7 +12,7 @@ paper-triumph-commands = "2.0.0-SNAPSHOT"
 paper-configlib = "4.5.0"
 
 # Dumpster
-dumpster-mongo = "5.3.1"
+dumpster-mongo = "5.5.0"
 dumpster-gson = "2.13.0"
 
 kotlin = "2.1.20"
