@@ -12,7 +12,7 @@ val devMode = grgit.branch.current().name != "master" && grgit.branch.current().
 
 allprojects {
     group = "info.preva1l.trashcan"
-    version = "1.0.1"
+    version = "1.0.2"
 
     repositories {
         mavenCentral()
@@ -22,14 +22,21 @@ allprojects {
     }
 }
 
+val parentProjects = arrayOf("fabric")
+
 subprojects {
+    if (parentProjects.contains(project.name)) return@subprojects
+
     apply(plugin = "maven-publish")
     apply(plugin = "java-library")
-    apply(plugin = rootProject.libs.plugins.kotlin.get().pluginId)
     apply(plugin = rootProject.libs.plugins.shadow.get().pluginId)
 
-    dependencies {
-        compileOnly(kotlin("stdlib"))
+    if (parentProjects.contains(project.parent?.name)) {
+        version = version as String + "-${project.name}"
+
+        if (project.parent?.name?.equals("fabric") == true) {
+            //apply(plugin = "fabric-loom")
+        }
     }
 
     tasks {

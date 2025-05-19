@@ -1,14 +1,17 @@
 [versions]
+# Shared
+shared-cloud = "2.0.0-beta.10"
+
 # Common
 common-redisson = "3.45.0"
 common-adventure-api = "4.18.0"
 common-reflections = "0.10.2"
 common-log4j = "2.19.0"
+common-cloud = "2.0.0"
 
 # Paper
 paper-api = "1.19.3-R0.1-SNAPSHOT"
 paper-hooker = "1.0.1"
-paper-triumph-commands = "2.0.0-SNAPSHOT"
 paper-configlib = "4.5.0"
 
 # Dumpster
@@ -23,11 +26,13 @@ common-redisson = { group = "org.redisson", name = "redisson", version.ref = "co
 common-adventure-api = { group = "net.kyori", name = "adventure-api", version.ref = "common-adventure-api" }
 common-reflections = { group = "org.reflections", name = "reflections", version.ref = "common-reflections" }
 common-log4j = { group = "org.apache.logging.log4j", name = "log4j-core", version.ref = "common-log4j" }
+common-cloud-annotations = { group = "org.incendo", name = "cloud-annotations", version.ref = "common-cloud" }
 
 # Paper
 paper-api = { group = "io.papermc.paper", name = "paper-api", version.ref = "paper-api" }
 paper-hooker = { group = "info.preva1l.hooker", name = "Hooker", version.ref = "paper-hooker" }
-paper-triumph-commands = { group = "dev.triumphteam", name = "triumph-cmd-bukkit", version.ref = "paper-triumph-commands" }
+paper-cloud = { group = "org.incendo", name = "cloud-paper", version.ref = "shared-cloud" }
+paper-cloud-extras = { group = "org.incendo", name = "cloud-minecraft-extras", version.ref = "shared-cloud" }
 paper-configlib = { group = "de.exlll", name = "configlib-yaml", version.ref = "paper-configlib" }
 
 # Dumpster
@@ -43,10 +48,10 @@ pluginyml-paper = { id = "net.minecrell.plugin-yml.paper", version = "0.6.0" }
 [bundles]
 # Common
 common-provided = [ "common-log4j" ]
-common-loaded = [ "common-redisson", "common-adventure-api", "common-reflections" ]
+common-loaded = [ "common-redisson", "common-adventure-api", "common-reflections", "common-cloud-annotations" ]
 common-included = [ ]
 
 # Paper
 paper-provided = [ "paper-api" ]
-paper-loaded = [ "paper-configlib", "paper-triumph-commands" ]
+paper-loaded = [ "paper-configlib", "paper-cloud" ]
 paper-included = [ "paper-hooker" ]

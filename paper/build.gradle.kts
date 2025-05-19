@@ -16,7 +16,6 @@ plugins.withType<JavaPlugin> {
 
 repositories {
     maven(url = "https://repo.papermc.io/repository/maven-public/")
-    maven(url = "https://repo.triumphteam.dev/snapshots/")
 }
 
 dependencies {
@@ -52,6 +51,7 @@ tasks {
 
     withType<ShadowJar> {
         dependsOn(":common:shadowJar")
+        mergeServiceFiles()
     }
 
     withType<Test> {
