@@ -53,5 +53,5 @@ common-included = [ ]
 
 # Paper
 paper-provided = [ "paper-api" ]
-paper-loaded = [ "paper-configlib", "paper-cloud" ]
+paper-loaded = [ "paper-configlib", "paper-cloud", "paper-cloud-extras" ]
 paper-included = [ "paper-hooker" ]
