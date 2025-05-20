@@ -1,4 +1,4 @@
-package info.preva1l.trashcan.plugin.libloader;
+package info.preva1l.trashcan.extension.libloader;
 
 import com.google.gson.Gson;
 import io.papermc.paper.plugin.loader.PluginClasspathBuilder;

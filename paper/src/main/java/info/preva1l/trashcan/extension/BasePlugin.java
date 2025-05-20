@@ -1,16 +1,12 @@
-package info.preva1l.trashcan.plugin;
+package info.preva1l.trashcan.extension;
 
 import info.preva1l.hooker.Hooker;
 import info.preva1l.trashcan.Version;
+import info.preva1l.trashcan.extension.annotations.*;
 import info.preva1l.trashcan.flavor.Flavor;
 import info.preva1l.trashcan.flavor.FlavorOptions;
 import info.preva1l.trashcan.flavor.PackageIndexer;
-import info.preva1l.trashcan.flavor.binder.defaults.DefaultManagersBinder;
 import info.preva1l.trashcan.flavor.binder.defaults.DefaultPluginBinder;
-import info.preva1l.trashcan.plugin.annotations.PluginDisable;
-import info.preva1l.trashcan.plugin.annotations.PluginEnable;
-import info.preva1l.trashcan.plugin.annotations.PluginLoad;
-import info.preva1l.trashcan.plugin.annotations.PluginReload;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -22,7 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  * @author Preva1l
  */
 @SuppressWarnings("UnstableApiUsage")
-public abstract class BasePlugin extends JavaPlugin {
+public abstract class BasePlugin extends JavaPlugin implements BaseExtension {
     protected final Version currentVersion =
             Version.fromString(getPluginMeta() == null ? "1.0.0" : getPluginMeta().getVersion());
 
@@ -33,10 +29,10 @@ public abstract class BasePlugin extends JavaPlugin {
     public final void onLoad() {
         // Resolve all plugin annotations here, preventing class not found exceptions on shutdown
         try {
-            Class.forName("info.preva1l.trashcan.plugin.annotations.PluginLoad");
-            Class.forName("info.preva1l.trashcan.plugin.annotations.PluginEnable");
-            Class.forName("info.preva1l.trashcan.plugin.annotations.PluginDisable");
-            Class.forName("info.preva1l.trashcan.plugin.annotations.PluginReload");
+            Class.forName("info.preva1l.trashcan.extension.annotations.PluginLoad");
+            Class.forName("info.preva1l.trashcan.extension.annotations.PluginEnable");
+            Class.forName("info.preva1l.trashcan.extension.annotations.PluginDisable");
+            Class.forName("info.preva1l.trashcan.extension.annotations.ExtensionReload");
         } catch (ClassNotFoundException ignored) {}
 
         this.flavor = Flavor.create(
@@ -51,8 +47,7 @@ public abstract class BasePlugin extends JavaPlugin {
 
         this.packageIndexer.invokeMethodsAnnotatedWith(PluginLoad.class);
 
-        this.flavor.inherit(new DefaultPluginBinder(this))
-                .inherit(new DefaultManagersBinder(this));
+        this.flavor.inherit(new DefaultPluginBinder(this));
 
         try {
             var hooker = Hooker.class.getDeclaredField("instance");
@@ -62,15 +57,16 @@ public abstract class BasePlugin extends JavaPlugin {
             }
         } catch (Exception ignored) {}
         Hooker.load();
+        InstanceHolder.modification = this;
     }
 
     @Override
     public final void onEnable() {
-        this.packageIndexer.invokeMethodsAnnotatedWith(PluginEnable.class);
-
         flavor.startup();
 
         Hooker.enable();
+
+        this.packageIndexer.invokeMethodsAnnotatedWith(PluginEnable.class);
     }
 
     @Override
@@ -83,13 +79,18 @@ public abstract class BasePlugin extends JavaPlugin {
     }
 
     /**
-     * Reloads your plugin, runs any methods annotated with @PluginReload
+     * {@inheritDoc}
      */
+    @Override
     public final void reload() {
-        this.packageIndexer.invokeMethodsAnnotatedWith(PluginReload.class);
+        this.packageIndexer.invokeMethodsAnnotatedWith(ExtensionReload.class);
         Hooker.reload();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public final Version getCurrentVersion() {
         return currentVersion;
     }

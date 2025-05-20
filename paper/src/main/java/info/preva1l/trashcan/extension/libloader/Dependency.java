@@ -1,4 +1,4 @@
-package info.preva1l.trashcan.plugin.libloader;
+package info.preva1l.trashcan.extension.libloader;
 
 import org.intellij.lang.annotations.Pattern;
 import org.intellij.lang.annotations.RegExp;

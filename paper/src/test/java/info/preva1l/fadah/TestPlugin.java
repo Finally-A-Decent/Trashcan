@@ -1,9 +1,9 @@
 package info.preva1l.fadah;
 
-import info.preva1l.trashcan.plugin.BasePlugin;
-import info.preva1l.trashcan.plugin.annotations.PluginDisable;
-import info.preva1l.trashcan.plugin.annotations.PluginEnable;
-import info.preva1l.trashcan.plugin.annotations.PluginLoad;
+import info.preva1l.trashcan.extension.BasePlugin;
+import info.preva1l.trashcan.extension.annotations.PluginDisable;
+import info.preva1l.trashcan.extension.annotations.PluginEnable;
+import info.preva1l.trashcan.extension.annotations.PluginLoad;
 
 /**
  * Created on 25/04/2025

@@ -1,4 +1,4 @@
-package info.preva1l.trashcan.plugin.annotations;
+package info.preva1l.trashcan.extension.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

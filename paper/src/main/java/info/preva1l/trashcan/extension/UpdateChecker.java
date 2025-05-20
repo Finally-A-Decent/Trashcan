@@ -1,4 +1,4 @@
-package info.preva1l.trashcan.plugin;
+package info.preva1l.trashcan.extension;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;

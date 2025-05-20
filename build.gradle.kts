@@ -12,7 +12,7 @@ val devMode = grgit.branch.current().name != "master" && grgit.branch.current().
 
 allprojects {
     group = "info.preva1l.trashcan"
-    version = "1.0.3"
+    version = "1.1.0"
 
     repositories {
         mavenCentral()
