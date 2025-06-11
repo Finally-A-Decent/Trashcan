@@ -1,0 +1,13 @@
+[versions]
+kotlin = "2.1.20"
+shadow = "9.0.0-beta12"
+grgit = "5.3.0"
+gson = "2.13.1"
+
+[libraries]
+shadow = { group = "com.gradleup.shadow", name = "shadow-gradle-plugin", version.ref = "shadow"}
+grgit = { group = "org.ajoberstar.grgit", name = "grgit-core", version.ref = "grgit"}
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson"}
+
+[plugins]
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
