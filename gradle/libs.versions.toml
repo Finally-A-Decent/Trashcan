@@ -29,7 +29,6 @@ common-log4j = { group = "org.apache.logging.log4j", name = "log4j-core", versio
 common-cloud-annotations = { group = "org.incendo", name = "cloud-annotations", version.ref = "common-cloud" }
 
 # Paper
-paper-api = { group = "io.papermc.paper", name = "paper-api", version.ref = "paper-api" }
 paper-hooker = { group = "info.preva1l.hooker", name = "Hooker", version.ref = "paper-hooker" }
 paper-cloud = { group = "org.incendo", name = "cloud-paper", version.ref = "shared-cloud" }
 paper-cloud-extras = { group = "org.incendo", name = "cloud-minecraft-extras", version.ref = "shared-cloud" }
@@ -43,15 +42,14 @@ dumpster-gson = { group = "com.google.code.gson", name = "gson", version.ref = "
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 shadow = { id = "com.gradleup.shadow", version = "9.0.0-beta12" }
 grgit = { id = "org.ajoberstar.grgit", version = "5.3.0" }
-pluginyml-paper = { id = "net.minecrell.plugin-yml.paper", version = "0.6.0" }
+trashcan = { id = "info.preva1l.trashcan", version = "1.0.0" }
 
 [bundles]
 # Common
-common-provided = [ "common-log4j" ]
-common-loaded = [ "common-redisson", "common-adventure-api", "common-reflections", "common-cloud-annotations" ]
-common-included = [ ]
+common-provided = [ "common-log4j", "common-adventure-api" ]
+common-loaded = [ "common-redisson", "common-reflections", "common-cloud-annotations" ]
+common-included = [  ]
 
 # Paper
-paper-provided = [ "paper-api" ]
 paper-loaded = [ "paper-configlib", "paper-cloud", "paper-cloud-extras" ]
 paper-included = [ "paper-hooker" ]

@@ -1,8 +1,8 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import net.minecrell.pluginyml.GeneratePluginDescription
+import info.preva1l.trashcan.paper
 
 plugins {
-    alias(libs.plugins.pluginyml.paper)
+    alias(libs.plugins.trashcan)
 }
 
 val compileOnlyApiLibrary = configurations.maybeCreate("compileOnlyApiLibrary")
@@ -14,14 +14,14 @@ plugins.withType<JavaPlugin> {
     }
 }
 
-repositories {
-    maven(url = "https://repo.papermc.io/repository/maven-public/")
+trashcan {
+    librariesFileName = "trashcan-libraries.json"
 }
 
 dependencies {
     api(project(":common"))
 
-    compileOnly(libs.bundles.paper.provided)
+    paper(libs.versions.paper.api.get())
 
     compileOnlyApiLibrary(libs.bundles.paper.loaded)
     compileOnlyApiLibrary(libs.bundles.common.loaded)
@@ -38,17 +38,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.11.4")
 }
 
-paper {
-    main = "Trashcan ftw!"
-    apiVersion = "1.19"
-    generateLibrariesJson = true
-}
-
 tasks {
-    withType<GeneratePluginDescription> {
-        librariesJsonFileName = "trashcan-libraries.json"
-    }
-
     withType<ShadowJar> {
         dependsOn(":common:shadowJar")
         mergeServiceFiles()

@@ -1,4 +1,4 @@
-package info.preva1l.trashcan.extension.libloader;
+package info.preva1l.trashcan;
 
 import org.intellij.lang.annotations.Pattern;
 import org.intellij.lang.annotations.RegExp;
@@ -35,9 +35,5 @@ public record Repository(
             final String url
     ) {
         return new Repository(GENERIC_INDEX == 0 ? "maven" : "maven" + GENERIC_INDEX++, url, new ArrayList<>());
-    }
-
-    public Repository self() {
-        return this;
     }
 }
