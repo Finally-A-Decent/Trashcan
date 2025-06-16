@@ -16,7 +16,7 @@ paper-configlib = "4.5.0"
 
 # Dumpster
 dumpster-mongo = "5.5.1"
-dumpster-gson = "2.13.0"
+dumpster-gson = "2.13.1"
 
 kotlin = "2.1.20"
 
