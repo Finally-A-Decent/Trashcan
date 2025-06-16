@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.StringJoiner;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 /**
@@ -67,7 +68,12 @@ public class Version implements Comparable<Version> {
             version = version.substring(0, metaIndex);
         }
         String[] versions = version.split(Pattern.quote(VERSION_DELIMITER));
-        this.versions = Arrays.stream(versions).mapToInt(Integer::parseInt).toArray();
+        try {
+            this.versions = Arrays.stream(versions).mapToInt(Integer::parseInt).toArray();
+        } catch(NumberFormatException e) {
+            Logger.getLogger(this.getClass().getName()).severe("Invalid Version \"%s\" Using \"0.0.0\"".formatted(version));
+            this.versions = new int[]{0,0,0};
+        }
     }
 
     /**

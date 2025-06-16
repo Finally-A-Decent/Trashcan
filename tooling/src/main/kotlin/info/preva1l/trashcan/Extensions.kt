@@ -3,7 +3,11 @@ package info.preva1l.trashcan
 import org.gradle.api.Action
 import org.gradle.api.artifacts.ExternalModuleDependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
+import org.gradle.api.artifacts.dsl.RepositoryHandler
+import org.gradle.api.credentials.PasswordCredentials
+import org.gradle.kotlin.dsl.credentials
 import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.maven
 
 /**
  * Created on 10/06/2025
@@ -21,7 +25,7 @@ fun DependencyHandler.paper(
     .paper(version, nms, configuration, classifier, ext, configurationAction)
 
 fun DependencyHandler.trashcan(
-    version: String? = "1.1.0",
+    version: String? = TrashcanDependencyExtension.BUNDLED_TRASHCAN_VERSION,
     configuration: String? = null,
     classifier: String? = null,
     ext: String? = null,
@@ -29,22 +33,22 @@ fun DependencyHandler.trashcan(
 ) = extensions.getByType<TrashcanDependencyExtension>()
     .trashcan(version, configuration, classifier, ext, configurationAction)
 
-fun DependencyHandler.dependency(
-    dependencyNotation: String,
-    action: Action<PaperProvidedDependency>
-) = extensions.getByType<TrashcanDependencyExtension>()
-    .dependency(dependencyNotation, action)
-
-fun DependencyHandler.dependency(
-    dependencyNotation: Any,
-    action: Action<PaperProvidedDependency>
-) = extensions.getByType<TrashcanDependencyExtension>()
-    .dependency(dependencyNotation, action)
-
-
 fun ExternalModuleDependency.setRemapped(remap: Boolean) {
     attributes {
         attribute(TrashcanExtension.REMAP_ATTRIBUTE, remap)
+    }
+}
+
+fun RepositoryHandler.finallyADecent(
+    name: String = "FinallyADecent",
+    dev: Boolean = false,
+    authenticated: Boolean = false
+) {
+    maven("https://repo.preva1l.info/${if (dev) "development" else "releases"}/") {
+        this@maven.name = name
+        if (authenticated) {
+            credentials(PasswordCredentials::class)
+        }
     }
 }
 

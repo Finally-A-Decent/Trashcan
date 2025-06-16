@@ -5,6 +5,7 @@ pluginManagement {
         maven(url = "https://maven.architectury.dev/")
         maven(url = "https://maven.minecraftforge.net")
         maven(url = "https://repo.essential.gg/repository/maven-public/")
+        maven(url = "https://repo.preva1l.info/releases/")
     }
 
 //    plugins {

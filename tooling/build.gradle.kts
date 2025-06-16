@@ -1,9 +1,6 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
-    id("com.gradle.plugin-publish") version "1.3.1"
+    alias(libs.plugins.gradle)
     `kotlin-dsl`
-    alias(libs.plugins.shadow)
 }
 
 repositories {
@@ -11,9 +8,12 @@ repositories {
 }
 
 dependencies {
-    implementation(libs.shadow)
     implementation(libs.grgit)
     implementation(libs.gson)
+    implementation(libs.paperweight)
+    implementation(libs.bundles.jackson) {
+        exclude(group = "org.jetbrains.kotlin")
+    }
 }
 
 gradlePlugin {
@@ -33,11 +33,6 @@ gradlePlugin {
 }
 
 tasks {
-    withType<ShadowJar> {
-        exclude("META-INF/maven/**", "org/**", "paper-plugin.yml")
-        archiveClassifier.set("")
-    }
-
     withType<Javadoc> {
         (options as StandardJavadocDocletOptions).tags(
             "apiNote:a:API Note:",
@@ -50,5 +45,17 @@ tasks {
 publishing {
     repositories {
         mavenLocal()
+        val user = properties["fad_username"]?.toString() ?: System.getenv("fad_username")
+        val pass = properties["fad_password"]?.toString() ?: System.getenv("fad_password")
+
+        maven("https://repo.preva1l.info/releases/") {
+            name = "FinallyADecent"
+            if (user != null && pass != null) {
+                credentials {
+                    username = user
+                    password = pass
+                }
+            }
+        }
     }
 }

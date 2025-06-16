@@ -16,17 +16,20 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.*;
-import java.util.function.Predicate;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.jar.JarOutputStream;
 import java.util.jar.Manifest;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  * A plugin loader that automatically grabs and loads libraries from paper-libraries.json.
  * <p>
+ *     To add custom libraries programmatically override {@link BaseLibraryLoader#additionalLibraries()}
+ *     and set the library loader to your custom class in the trashcan gradle config.
+ * </p>
  * Created on 11/04/2025
  *
  * @author Preva1l
@@ -34,6 +37,10 @@ import java.util.logging.Logger;
 @SuppressWarnings({"UnstableApiUsage", "unused"})
 public class BaseLibraryLoader implements PluginLoader {
     private final Gson gson = new Gson();
+
+    public Collection<Repository> additionalLibraries() {
+        return new ArrayList<>();
+    }
 
     @Override
     public final void classloader(@NotNull PluginClasspathBuilder classpathBuilder) {
@@ -81,7 +88,11 @@ public class BaseLibraryLoader implements PluginLoader {
         Libraries libraries = new Libraries(new HashMap<>());
         libraries.merge(load("libraries.json"));
         libraries.merge(load("trashcan-libraries.json"));
-        // re add programmatic loading
+        libraries.merge(new Libraries(
+                additionalLibraries()
+                        .stream()
+                        .collect(Collectors.toMap(Repository::name, Repository::self))
+        ));
         return libraries;
     }
 

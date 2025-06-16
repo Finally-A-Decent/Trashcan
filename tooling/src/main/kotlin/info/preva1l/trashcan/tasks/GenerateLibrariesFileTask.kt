@@ -64,6 +64,11 @@ abstract class GenerateLibrariesFileTask : DefaultTask() {
             project.extensions.getByType<TrashcanExtension>().librariesFileName
         ).get().asFile
 
+        if (libraries.repositories.all { it.value.dependencies.isEmpty() }) {
+            logger.warn("No dependencies to write!")
+            return
+        }
+
         FileWriter(librariesFile).use {
             gson.toJson(
                 libraries,

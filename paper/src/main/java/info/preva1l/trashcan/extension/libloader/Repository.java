@@ -36,4 +36,8 @@ public record Repository(
     ) {
         return new Repository(GENERIC_INDEX == 0 ? "maven" : "maven" + GENERIC_INDEX++, url, new ArrayList<>());
     }
+
+    public Repository self() {
+        return this;
+    }
 }

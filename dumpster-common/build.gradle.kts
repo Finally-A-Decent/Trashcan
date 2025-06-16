@@ -1,8 +1,7 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import net.minecrell.pluginyml.GeneratePluginDescription
 
 plugins {
-    alias(libs.plugins.pluginyml.paper)
+    alias(libs.plugins.trashcan)
 }
 
 val compileOnlyApiLibrary = configurations.maybeCreate("compileOnlyApiLibrary")
@@ -14,26 +13,18 @@ plugins.withType<JavaPlugin> {
     }
 }
 
+trashcan {
+    librariesFileName = "dumpster-libraries.json"
+}
 
 dependencies {
     api(project(":common"))
     compileOnlyApi(libs.dumpster.gson)
 }
 
-paper {
-    main = "Trashcan ftw!"
-    apiVersion = "1.19"
-    generateLibrariesJson = true
-}
-
 tasks {
-    withType<GeneratePluginDescription> {
-        librariesJsonFileName = "dumpster-libraries.json"
-    }
-
     withType<ShadowJar> {
         dependsOn(":common:shadowJar")
-        exclude("paper-plugin.yml")
     }
 }
 
