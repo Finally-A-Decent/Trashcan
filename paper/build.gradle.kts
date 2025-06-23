@@ -33,9 +33,9 @@ dependencies {
     testImplementation(libs.bundles.common.loaded)
     testImplementation(libs.bundles.paper.included)
     testImplementation("com.github.seeseemelk:MockBukkit-v1.20:3.93.2")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.4")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:5.11.4")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.11.4")
+    testImplementation(platform("org.junit:junit-bom:5.13.1"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 tasks {
