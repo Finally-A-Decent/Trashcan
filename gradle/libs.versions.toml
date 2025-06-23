@@ -11,7 +11,7 @@ common-cloud = "2.0.0"
 
 # Paper
 paper-api = "1.19.3-R0.1-SNAPSHOT"
-paper-hooker = "1.0.3"
+paper-hooker = "1.0.2"
 paper-configlib = "4.5.0"
 
 # Dumpster
