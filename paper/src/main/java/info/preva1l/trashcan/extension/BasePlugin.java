@@ -33,6 +33,7 @@ public abstract class BasePlugin extends JavaPlugin implements BaseExtension {
             Class.forName("info.preva1l.trashcan.extension.annotations.PluginEnable");
             Class.forName("info.preva1l.trashcan.extension.annotations.PluginDisable");
             Class.forName("info.preva1l.trashcan.extension.annotations.ExtensionReload");
+            Class.forName("info.preva1l.hooker.annotations.OnStop");
         } catch (ClassNotFoundException ignored) {}
 
         this.flavor = Flavor.create(
