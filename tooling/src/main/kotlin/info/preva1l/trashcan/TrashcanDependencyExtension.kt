@@ -20,7 +20,7 @@ abstract class TrashcanDependencyExtension(
     private val extensions: ExtensionContainer
 ) {
     companion object {
-        const val BUNDLED_TRASHCAN_VERSION: String = "1.2.0"
+        const val BUNDLED_TRASHCAN_VERSION: String = "1.2.2"
     }
 
     @JvmOverloads
@@ -97,7 +97,7 @@ abstract class TrashcanDependencyExtension(
         bootstrap: Boolean = false,
         action: Action<PaperDependencyDefinition> = nullAction()
     ): ExternalModuleDependency {
-        val dep = dependencies.create(dependencyNotation) { isTransitive = false }
+        val dep = dependencies.create(dependencyNotation) { isTransitive = true }
         dependencies.add("compileOnly", dep)
 
         extensions.getByType(PaperPluginDescription::class).apply {
