@@ -8,11 +8,11 @@ common-adventure-api = "4.18.0"
 common-reflections = "0.10.2"
 common-log4j = "2.19.0"
 common-cloud = "2.0.0"
+common-configlib = "4.5.0"
 
 # Paper
 paper-api = "1.19.3-R0.1-SNAPSHOT"
 paper-hooker = "1.0.2"
-paper-configlib = "4.5.0"
 
 # Dumpster
 dumpster-mongo = "5.5.1"
@@ -27,12 +27,12 @@ common-adventure-api = { group = "net.kyori", name = "adventure-api", version.re
 common-reflections = { group = "org.reflections", name = "reflections", version.ref = "common-reflections" }
 common-log4j = { group = "org.apache.logging.log4j", name = "log4j-core", version.ref = "common-log4j" }
 common-cloud-annotations = { group = "org.incendo", name = "cloud-annotations", version.ref = "common-cloud" }
+common-configlib = { group = "de.exlll", name = "configlib-yaml", version.ref = "common-configlib" }
 
 # Paper
 paper-hooker = { group = "info.preva1l.hooker", name = "Hooker", version.ref = "paper-hooker" }
 paper-cloud = { group = "org.incendo", name = "cloud-paper", version.ref = "shared-cloud" }
 paper-cloud-extras = { group = "org.incendo", name = "cloud-minecraft-extras", version.ref = "shared-cloud" }
-paper-configlib = { group = "de.exlll", name = "configlib-yaml", version.ref = "paper-configlib" }
 
 # Dumpster
 dumpster-mongo = { group = "org.mongodb", name = "mongodb-driver-sync", version.ref = "dumpster-mongo" }
@@ -47,9 +47,9 @@ trashcan = { id = "info.preva1l.trashcan", version = "1.0.0" }
 [bundles]
 # Common
 common-provided = [ "common-log4j", "common-adventure-api" ]
-common-loaded = [ "common-redisson", "common-reflections", "common-cloud-annotations" ]
+common-loaded = [ "common-redisson", "common-reflections", "common-cloud-annotations", "common-configlib" ]
 common-included = [  ]
 
 # Paper
-paper-loaded = [ "paper-configlib", "paper-cloud", "paper-cloud-extras" ]
+paper-loaded = [ "paper-cloud", "paper-cloud-extras" ]
 paper-included = [ "paper-hooker" ]
