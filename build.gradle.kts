@@ -12,9 +12,9 @@ val devMode = grgit.branch.current().name != "master" && grgit.branch.current().
 
 allprojects {
     group = "info.preva1l.trashcan"
-    version = "1.2.2"
+    version = "1.2.3"
     repositories {
-        mavenCentral()
+        maven("https://maven-central.storage-download.googleapis.com/maven2")
 
         if (devMode) configureFinallyADecentRepository(devMode)
         configureFinallyADecentRepository()

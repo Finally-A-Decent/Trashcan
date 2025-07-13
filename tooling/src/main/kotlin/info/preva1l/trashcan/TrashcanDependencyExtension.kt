@@ -20,7 +20,7 @@ abstract class TrashcanDependencyExtension(
     private val extensions: ExtensionContainer
 ) {
     companion object {
-        const val BUNDLED_TRASHCAN_VERSION: String = "1.2.2"
+        const val BUNDLED_TRASHCAN_VERSION: String = "1.2.3"
     }
 
     @JvmOverloads
