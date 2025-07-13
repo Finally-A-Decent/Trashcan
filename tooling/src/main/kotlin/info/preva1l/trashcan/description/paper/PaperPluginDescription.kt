@@ -22,7 +22,7 @@ class PaperPluginDescription(
     @Input var version: String = project.version.toString()
     @Input lateinit var main: String
     @Input lateinit var apiVersion: String
-    @Input var loader: String = "info.preva1l.trashcan.extension.libloader.BaseLibraryLoader"
+    @Input @Optional var loader: String? = "info.preva1l.trashcan.extension.libloader.BaseLibraryLoader"
     @Input @Optional var bootstrapper: String? = null
     @Input @Optional var description: String? = null
     @Input @Optional var load: PluginLoadOrder? = null
