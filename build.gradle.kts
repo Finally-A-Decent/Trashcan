@@ -14,8 +14,6 @@ allprojects {
     group = "info.preva1l.trashcan"
     version = "1.2.3"
     repositories {
-        maven("https://maven-central.storage-download.googleapis.com/maven2")
-
         if (devMode) configureFinallyADecentRepository(devMode)
         configureFinallyADecentRepository()
     }
