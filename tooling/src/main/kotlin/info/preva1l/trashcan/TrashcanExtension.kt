@@ -21,6 +21,8 @@ abstract class TrashcanExtension(
 
     val paper: Property<Boolean> = objects.property<Boolean>().convention(false)
 
+    val nms: Property<Boolean> = objects.property<Boolean>().convention(false)
+
     val librariesFileName: Property<String> = objects.property<String>().convention("libraries.json")
 
     @JvmOverloads

@@ -42,7 +42,7 @@ class TrashcanPlugin : Plugin<Project> {
             project.extensions
         )
 
-        if (configuration.paper.get()) {
+        if (configuration.nms.get()) {
             project.plugins.apply(PaperweightUser::class)
         }
 
